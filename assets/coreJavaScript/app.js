@@ -7,6 +7,7 @@ const trailArr = response.trails;
     const trailName = trail.name;
     const thumbnail = trail.imgMedium;
     const description = trail.summary;
+    const trailLength = trail.length;
     $("#cards").append(`
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
  <div class="portfolio-modal-dialog bg-white">
@@ -15,14 +16,14 @@ const trailArr = response.trails;
 
          <div class="row">
              <div class="col-lg-12 mx-auto">
-                 <h3 class="text-secondary text-uppercase mb-0">${trailName}</h3>
+                 <h3 class="text-secondary text-uppercase mb-0">${trailName} (${trailLength} miles)</h3>
                  <hr class="star-dark mb-5">
                  <div class="row">
                      <div class="col-lg-3 col-md-4">
                          <img class="img-fluid mb-4" src="${thumbnail}" alt="">
                      </div>
                      <div class="col-lg-9 col-md-8">
-                         <h4>Maybe Some Description or Locatlion </h4>
+                         <h4>Trail Summary</h4>
                          <p class="mb-5">${description}</p>
                          <h5 class="mb-3">Mybe Reviews or Weather</h5>
                          <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
