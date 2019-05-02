@@ -1,13 +1,21 @@
+//Placeholder URL to return an array to render
+
 $.get(
   "https://www.hikingproject.com/data/get-trails?lat=40.0274&lon=-105.2519&key=200460387-e5b1d616b3250f62fab9619fc65bde2d"
 ).then(function(response) {
+    //Promise that will run once object is returned from API call
+    //creates array of trails from JSON object
 const trailArr = response.trails;
+//logs array to console 
   console.log(trailArr);
+  //renders a card for each item in the array
   trailArr.forEach(function(trail) {
+      //creates variable for trail name, thumbnail image, description, and trail length (for each)
     const trailName = trail.name;
     const thumbnail = trail.imgMedium;
     const description = trail.summary;
     const trailLength = trail.length;
+    //appends a card with trail info and variables (for each) HTML came from Ivan
     $("#cards").append(`
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
  <div class="portfolio-modal-dialog bg-white">
@@ -37,7 +45,7 @@ const trailArr = response.trails;
     `)
   })
 });
-
+//EXTRA CODE JUST IN CASE THIS DOES NOTHING
 //$("#cards").html(`<div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
 // <div class="portfolio-modal-dialog bg-white">
 //     <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
