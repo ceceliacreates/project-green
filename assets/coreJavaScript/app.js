@@ -1,10 +1,10 @@
 
 
       const apiKey = "28d434e8969b198ac0dc819997cb40d1";
-      const city = "Boulder, Colorado";
+     const city = "Boulder, Colorado";
       const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&unit=imperial&appid=${apiKey}`;
-      let searchCity;
-      let currentWeatherIcon;
+    //   let searchCity;
+    //   let currentWeatherIcon;
 
       //pulling the api using the weather url for longitude and latitude data
       $.ajax({
@@ -62,7 +62,15 @@
                 const trailLatLng = new google.maps.LatLng(trailLat, trailLong)
                 const travelDist = Math.floor((google.maps.geometry.spherical.computeDistanceBetween(startLatLng, trailLatLng)) / 1609.344);
                 //appends a card with trail info and variables (for each) HTML came from Ivan
-                $("#cards").append(`
+                let apiKey = "28d434e8969b198ac0dc819997cb40d1"; 
+                let newUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&unit=imperial&appid=${apiKey}`;
+                $.ajax({
+                    url: newUrl,
+                    method: "GET"
+                  }).then(function(weather) {
+                      console.log(weather);
+                       let currentWeatherIcon = weather.weather[0].icon;
+                    $("#cards").append(`
                 <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
              <div class="portfolio-modal-dialog bg-white">
                  <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
@@ -86,6 +94,33 @@
                                  </div>
                              </div>
                          </div> `)
+
+                  });
+
+            //     $("#cards").append(`
+            //     <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
+            //  <div class="portfolio-modal-dialog bg-white">
+            //      <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+            //      </a>
+            
+            //          <div class="row">
+            //              <div class="col-lg-12 mx-auto">
+            //              <h3 class="text-secondary text-uppercase mb-0">${trailName} (${trailLength} Mile Hike)</h3>
+            //                  <hr class="star-dark mb-5">
+            //                  <div class="row">
+            //                      <div class="col-lg-3 col-md-4">
+            //                          <img class="img-fluid mb-4" src="${thumbnail}" alt="">
+            //                      </div>
+            //                      <div class="col-lg-9 col-md-8">
+            //                          <h4>${location}</h4>
+            //                          <h5>(${travelDist} miles away)</h5>
+            //                          <p class="mb-5">${description}</p>
+            //                          <h5 class="mb-3">The current weather in ${location} is: <image src="http://openweathermap.org/img/w/${currentWeatherIcon}.png"></h5>
+            //                          <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="${trailUrl}" targ="_blank">
+            //                              Find Out More!</a>
+            //                      </div>
+            //                  </div>
+            //              </div> `)
               })
             }); 
 
