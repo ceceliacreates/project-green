@@ -97,7 +97,10 @@ section h2 {
 
 .img-fluid {
     border-radius: 20px;
-    border-radius: 20px;
+    object-fit: cover;
+
+    width: 300px;
+    height: 300px;
 }
 
 @media (min-width: 992px) {
