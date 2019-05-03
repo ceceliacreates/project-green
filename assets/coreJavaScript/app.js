@@ -103,9 +103,10 @@
 // // </div>`)
 
       const apiKey = "28d434e8969b198ac0dc819997cb40d1";
-      const city = "Atlanta";
+      const city = "Boulder, Colorado";
       const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&unit=imperial&appid=${apiKey}`;
-    
+      let searchCity;
+      let currentWeatherIcon;
 
       //pulling the api using the weather url for longitude and latitude data
       $.ajax({
@@ -117,11 +118,13 @@
           console.log(response);
           const latitude = response.coord.lat;
           const longitude = response.coord.lon;
-          const searchCity = response.main.city;
+          searchCity = response.name;
+          currentWeatherIcon = response.weather[0].icon;
 
           console.log(latitude);
           console.log(longitude);
           console.log(searchCity);
+          console.log(currentWeatherIcon);
 
           //Returns data for the next promise
           return searchTrails(latitude, longitude, searchCity);
@@ -131,7 +134,7 @@
         .then(function(trails) {
           console.log(trails);
         });
-      function searchTrails(lat, lon, city) {
+      function searchTrails(lat, lon, searchCity) {
         const params = $.param({
           key: "200460387-e5b1d616b3250f62fab9619fc65bde2d",
           lat: lat,
@@ -154,6 +157,7 @@
                 const description = trail.summary;
                 const trailLength = trail.length;
                 const trailUrl = trail.url;
+                const location = trail.location;
                 //appends a card with trail info and variables (for each) HTML came from Ivan
                 $("#cards").append(`
                 <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
@@ -172,7 +176,7 @@
                                  <div class="col-lg-9 col-md-8">
                                      <h4>Trail Summary</h4>
                                      <p class="mb-5">${description}</p>
-                                     <h5 class="mb-3">The current weather in ${city} is: </h5>
+                                     <h5 class="mb-3">The current weather in ${location} is: <image src="http://openweathermap.org/img/w/${currentWeatherIcon}.png"></h5>
                                      <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="${trailUrl}" targ="_blank">
                                          Find Out More!</a>
                                  </div>
