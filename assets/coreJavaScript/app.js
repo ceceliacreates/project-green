@@ -1,7 +1,7 @@
 //Placeholder URL to return an array to render
 
 $.get(
-  "https://www.hikingproject.com/data/get-trails?lat=40.0274&lon=-105.2519&key=200460387-e5b1d616b3250f62fab9619fc65bde2d"
+  "https://www.hikingproject.com/data/get-trails?lat=33.84953&lon=-84.4898655&key=200460387-e5b1d616b3250f62fab9619fc65bde2d"
 ).then(function(response) {
     //Promise that will run once object is returned from API call
     //creates array of trails from JSON object
