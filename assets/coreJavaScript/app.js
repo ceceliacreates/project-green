@@ -1,10 +1,20 @@
 
+//  let userInput = $("#citySearch").val();
+//  console.log(userInput);
+
+
+$( "#run-search" ).click(function( event ) {
+  event.preventDefault();
+  let userInput = $("#citySearch").val();
+   console.log(userInput);
 
       const apiKey = "28d434e8969b198ac0dc819997cb40d1";
-      const city = "Boulder, Colorado";
-      const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&unit=imperial&appid=${apiKey}`;
+      // const city = ;
+      const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&unit=imperial&appid=${apiKey}`;
       let searchCity;
       let currentWeatherIcon;
+      // console.log("#city);
+   
 
       //pulling the api using the weather url for longitude and latitude data
       $.ajax({
@@ -91,3 +101,4 @@
 
 
         }
+      });
