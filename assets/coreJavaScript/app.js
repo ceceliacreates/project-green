@@ -15,6 +15,7 @@ const trailArr = response.trails;
     const thumbnail = trail.imgMedium;
     const description = trail.summary;
     const trailLength = trail.length;
+    const trailUrl = trail.url;
     //appends a card with trail info and variables (for each) HTML came from Ivan
     $("#cards").append(`
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
@@ -34,8 +35,8 @@ const trailArr = response.trails;
                          <h4>Trail Summary</h4>
                          <p class="mb-5">${description}</p>
                          <h5 class="mb-3">Mybe Reviews or Weather</h5>
-                         <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
-                             Action</a>
+                         <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="${trailUrl}" targ="_blank">
+                             Find Out More!</a>
                      </div>
                  </div>
              </div>
