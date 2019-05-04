@@ -41,7 +41,7 @@ $( "#run-search" ).click(function( event ) {
         .then(function(trails) {
           console.log(trails);
         });
-      function searchTrails(lat, lon, searchCity) {
+      function searchTrails(lat, lon) { 
         const params = $.param({
           key: "200460387-e5b1d616b3250f62fab9619fc65bde2d",
           lat: lat,
@@ -72,7 +72,15 @@ $( "#run-search" ).click(function( event ) {
                 const travelDist = Math.floor((google.maps.geometry.spherical.computeDistanceBetween(startLatLng, trailLatLng)) / 1609.344);
                 //MAKE AN AJAX CALL TO WEATHER API FOR TRAIL LOCATION AND .THEN(STORE RESULTS AND RENDER CARD)
                 //appends a card with trail info and variables (for each) HTML came from Ivan
-                $("#cards").append(`
+                let apiKey = "28d434e8969b198ac0dc819997cb40d1"; 
+                let newUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&unit=imperial&appid=${apiKey}`;
+                $.ajax({
+                    url: newUrl,
+                    method: "GET"
+                  }).then(function(weather) {
+                      console.log(weather);
+                       let currentWeatherIcon = weather.weather[0].icon;
+                    $("#cards").append(`
                 <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
              <div class="portfolio-modal-dialog bg-white">
               
@@ -97,6 +105,8 @@ $( "#run-search" ).click(function( event ) {
                                  </div>
                              </div>
                          </div> `)
+
+                  });
               })
             }); 
 
