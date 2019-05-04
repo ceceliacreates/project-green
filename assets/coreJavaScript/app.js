@@ -3,8 +3,18 @@
 //  console.log(userInput);
 
 
+// Function to empty out the articles
+function clear() {
+  $("#cards").empty();
+}
+
 $( "#run-search" ).click(function( event ) {
   event.preventDefault();
+
+  // clear card upon new search criteria
+  clear();
+
+
   let userInput = $("#citySearch").val();
    console.log(userInput);
 
@@ -13,6 +23,9 @@ $( "#run-search" ).click(function( event ) {
       const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&unit=imperial&appid=${apiKey}`;
       let searchCity;
       let currentWeatherIcon;
+      
+   
+
       let latitude;
       let longitude;
       //pulling the api using the weather url for longitude and latitude data
