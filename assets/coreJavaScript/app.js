@@ -64,10 +64,10 @@ function renderResults(
        <div class="row">
            <div class="col-lg-12 mx-auto">
            <h3 class="text-secondary text-uppercase mb-0">${trailName} (${trailLength} Mile Hike)</h3>
-               <hr class="star-dark mb-4">
+               <hr class="star-dark mb-5">
                <div class="row">
                    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-                       <img class="img-fluid mb-3" src="${thumbnail}" alt="">
+                       <img class="img-fluid mb-4" src="${thumbnail}" alt="">
                    </div>
                    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                        <h4>${location} (${travelDist} miles away)</h4>
@@ -171,6 +171,26 @@ $("#run-search").click(function(event) {
             let maximumTemp = Math.round(weather.main.temp_max);
             let conditions = weather.weather[0].description;
             let currentWeatherIcon = weather.weather[0].icon;
+<<<<<<< HEAD
+            renderResults(
+              trailName,
+              trailLength,
+              thumbnail,
+              location,
+              travelDist,
+              description,
+              conditions,
+              currentWeatherIcon,
+              feelsLike,
+              maximumTemp,
+              minimumTemp,
+              trailUrl,
+              latitude,
+              longitude,
+              trailLat,
+              trailLong
+            );
+=======
             $("#cards").append(`
                 <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
              <div class="portfolio-modal-dialog bg-white">
@@ -179,10 +199,10 @@ $("#run-search").click(function(event) {
                      <div class="row">
                          <div class="col-lg-12 mx-auto">
                          <h3 class="text-secondary text-uppercase mb-0">${trailName} - ${trailLength} Mile Hike - <i class='fas fa-hiking' style='font-size:48px;color:green'></i></h3>
-                             <hr class="star-dark mb-4">
+                             <hr class="star-dark mb-5">
                              <div class="row">
                                  <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-                                     <img class="img-fluid mb-3" src="${thumbnail}" alt="">
+                                     <img class="img-fluid mb-4" src="${thumbnail}" alt="">
                                  </div>
                                  <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                                      <h4>${location} - ${travelDist} miles away - <i class='fas fa-car-side' style='font-size:30px;color:green'></i></h4>
@@ -199,6 +219,7 @@ $("#run-search").click(function(event) {
                                  </div>
                              </div>
                          </div> `);
+>>>>>>> f66cdf059a58fd763d811ee27737263a85efb41b
           });
         });
       });
@@ -253,9 +274,34 @@ $("#run-search").click(function(event) {
           url: newUrl,
           method: "GET"
         }).then(function(weather) {
+<<<<<<< HEAD
           let feelsLike = Math.round(weather.main.temp);
           let minimumTemp = Math.round(weather.main.temp_min);
           let maximumTemp = Math.round(weather.main.temp_max);
+          let conditions = weather.weather[0].description;
+          let currentWeatherIcon = weather.weather[0].icon;
+          renderResults(
+            trailName,
+            trailLength,
+            thumbnail,
+            location,
+            travelDist,
+            description,
+            conditions,
+            currentWeatherIcon,
+            feelsLike,
+            maximumTemp,
+            minimumTemp,
+            trailUrl,
+            latitude,
+            longitude,
+            trailLat,
+            trailLong
+          );
+=======
+            let feelsLike = weather.main.temp;
+            let minimumTemp = weather.main.temp_min;
+            let maximumTemp = weather.main.temp_max;
             let conditions = weather.weather[0].description;
             let currentWeatherIcon = weather.weather[0].icon;
           $("#cards").append(`
@@ -266,10 +312,10 @@ $("#run-search").click(function(event) {
                <div class="row">
                    <div class="col-lg-12 mx-auto">
                    <h3 class="text-secondary text-uppercase mb-0">${trailName} - ${trailLength} Mile Hike - <i class='fas fa-hiking' style='font-size:48px;color:green'></i></h3>
-                   <hr class="star-dark mb-4">
+                   <hr class="star-dark mb-5">
                        <div class="row">
                            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-                               <img class="img-fluid mb-3" src="${thumbnail}" alt="">
+                               <img class="img-fluid mb-4" src="${thumbnail}" alt="">
                            </div>
                            <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                            <h4>${location} - ${travelDist} miles away - <i class='fas fa-car-side' style='font-size:30px;color:green'></i></h4>
@@ -286,6 +332,7 @@ $("#run-search").click(function(event) {
                            </div>
                        </div>
                    </div> `);
+>>>>>>> f66cdf059a58fd763d811ee27737263a85efb41b
         });
       });
     });
