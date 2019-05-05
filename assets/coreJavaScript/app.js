@@ -39,6 +39,52 @@ function positionError() {
     `<p class="text-danger font-weight-bold">Geolocation services not supported. Please enter location above.</p>`
   );
 }
+
+function renderResults(
+  trailName,
+  trailLength,
+  thumbnail,
+  location,
+  travelDist,
+  description,
+  conditions,
+  currentWeatherIcon,
+  feelsLike,
+  maximumTemp,
+  minimumTemp,
+  trailUrl,
+  latitude,
+  longitude,
+  trailLat,
+  trailLong
+) {
+  $("#cards").append(`
+  <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
+<div class="portfolio-modal-dialog bg-white">
+       <div class="row">
+           <div class="col-lg-12 mx-auto">
+           <h3 class="text-secondary text-uppercase mb-0">${trailName} (${trailLength} Mile Hike)</h3>
+               <hr class="star-dark mb-5">
+               <div class="row">
+                   <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                       <img class="img-fluid mb-4" src="${thumbnail}" alt="">
+                   </div>
+                   <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                       <h4>${location} (${travelDist} miles away)</h4>
+                       <p class="mb-1">${description}</p>
+                       <h5 class="text-capitalize my-0">${conditions} <image class="my-0" src="http://openweathermap.org/img/w/${currentWeatherIcon}.png" width="80px" height="80px"></h5>
+                       <p class="font-weight-bold align-baseline">Feels Like:  ${feelsLike} ºF</p>
+                       <p class="font-weight-bold align-baseline">High:  ${maximumTemp} ºF</p>
+                       <p class="font-weight-bold align-baseline">Low:  ${minimumTemp} ºF</p>
+                       
+                       <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss mr-3 text-right" href="${trailUrl}" target="_blank">
+                           Details</a>
+                           <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss text-right" href="https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${trailLat},${trailLong}" target="_blank">
+                           Directions</a>
+                   </div>
+               </div>
+           </div> `);
+}
 //on-click listener for search button
 $("#run-search").click(function(event) {
   event.preventDefault();
@@ -120,11 +166,31 @@ $("#run-search").click(function(event) {
             method: "GET"
           }).then(function(weather) {
             console.log(weather);
-            let feelsLike = weather.main.temp;
-            let minimumTemp = weather.main.temp_min;
-            let maximumTemp = weather.main.temp_max;
+            let feelsLike = Math.round(weather.main.temp);
+            let minimumTemp = Math.round(weather.main.temp_min);
+            let maximumTemp = Math.round(weather.main.temp_max);
             let conditions = weather.weather[0].description;
             let currentWeatherIcon = weather.weather[0].icon;
+<<<<<<< HEAD
+            renderResults(
+              trailName,
+              trailLength,
+              thumbnail,
+              location,
+              travelDist,
+              description,
+              conditions,
+              currentWeatherIcon,
+              feelsLike,
+              maximumTemp,
+              minimumTemp,
+              trailUrl,
+              latitude,
+              longitude,
+              trailLat,
+              trailLong
+            );
+=======
             $("#cards").append(`
                 <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
              <div class="portfolio-modal-dialog bg-white">
@@ -153,6 +219,7 @@ $("#run-search").click(function(event) {
                                  </div>
                              </div>
                          </div> `);
+>>>>>>> f66cdf059a58fd763d811ee27737263a85efb41b
           });
         });
       });
@@ -207,6 +274,31 @@ $("#run-search").click(function(event) {
           url: newUrl,
           method: "GET"
         }).then(function(weather) {
+<<<<<<< HEAD
+          let feelsLike = Math.round(weather.main.temp);
+          let minimumTemp = Math.round(weather.main.temp_min);
+          let maximumTemp = Math.round(weather.main.temp_max);
+          let conditions = weather.weather[0].description;
+          let currentWeatherIcon = weather.weather[0].icon;
+          renderResults(
+            trailName,
+            trailLength,
+            thumbnail,
+            location,
+            travelDist,
+            description,
+            conditions,
+            currentWeatherIcon,
+            feelsLike,
+            maximumTemp,
+            minimumTemp,
+            trailUrl,
+            latitude,
+            longitude,
+            trailLat,
+            trailLong
+          );
+=======
             let feelsLike = weather.main.temp;
             let minimumTemp = weather.main.temp_min;
             let maximumTemp = weather.main.temp_max;
@@ -240,12 +332,11 @@ $("#run-search").click(function(event) {
                            </div>
                        </div>
                    </div> `);
+>>>>>>> f66cdf059a58fd763d811ee27737263a85efb41b
         });
       });
     });
   }
 });
 
-
-//     Location Icon 
-
+//     Location Icon
