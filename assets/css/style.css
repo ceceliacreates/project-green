@@ -98,7 +98,7 @@ section h2 {
 .img-fluid {
     border-radius: 20px;
     object-fit: cover;
-
+    box-shadow: 0 0 3rem 1rem rgba(0, 0, 0, 0.5);
     width: 300px;
     height: 300px;
 }
@@ -198,7 +198,41 @@ header.masthead h2 {
     .portfolio .portfolio-item {
         margin-bottom: 30px;
     }
+    .portfolio-modal .portfolio-modal-dialog {
+        min-height: 0vh;
+        padding: 2rem;
+        margin: 3rem calc(3rem - 8px);
+        border-radius: 20px;
+    }
+    .img-fluid {
+        width: 100%;
+    }
 }
+
+@media (min-width: 384px) {
+    .portfolio {
+        margin-bottom: -30px;
+    }
+    .portfolio-modal .portfolio-modal-dialog {
+        min-height: 0vh;
+        padding: 2rem;
+        margin: 3rem calc(3rem - 8px);
+        border-radius: 20px;
+    }
+    .portfolio-modal .portfolio-modal-dialog {
+        min-height: 0vh;
+        padding: 2rem;
+        margin: 3rem calc(3rem - 8px);
+        border-radius: 20px;
+    }
+    .portfolio .portfolio-item {
+        margin-bottom: 30px;
+    }
+    .img-fluid {
+        width: 100%;
+    }
+}
+
 
 .portfolio-modal .portfolio-modal-dialog {
     padding: 3rem 1rem;
@@ -233,6 +267,15 @@ header.masthead h2 {
     }
     .portfolio-modal .portfolio-modal-dialog h2 {
         font-size: 3rem;
+    }
+    .portfolio-modal .portfolio-modal-dialog {
+        min-height: 0vh;
+        padding: 2rem;
+        margin: 3rem calc(3rem - 8px);
+        border-radius: 20px;
+    }
+    .img-fluid {
+        width: 100%;
     }
 }
 
@@ -318,6 +361,28 @@ a:focus, a:hover, a:active {
 
 .btn {
     border-width: 2px;
+    border-width: 2px;
+    color: black;
+    background-color: #52c234;
+}
+
+.btn:hover {
+    /* border-width: 2px;
+    border-width: 2px;
+    background-color: #52c234;
+    color: black;
+    font-weight: bolder;
+    font-size: 25px;
+    transition-duration: 1s; */
+    background-color: #52c234;
+    border: 3px solid #52c234;
+    color: black !important;
+    font-weight: 700 !important;
+    letter-spacing: 3px;
+    background: none;
+
+
+transition: all 0.3s ease 0s;
 }
 
 .bg-primary {

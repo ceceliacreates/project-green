@@ -49,7 +49,7 @@ $("#run-search").click(function(event) {
 
     const apiKey = "28d434e8969b198ac0dc819997cb40d1";
     // const city = ;
-    const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&unit=imperial&appid=${apiKey}`;
+    const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=${apiKey}`;
     let searchCity;
     let currentWeatherIcon;
     //pulling the api using the weather url for longitude and latitude data
@@ -114,12 +114,16 @@ $("#run-search").click(function(event) {
           //MAKE AN AJAX CALL TO WEATHER API FOR TRAIL LOCATION AND .THEN(STORE RESULTS AND RENDER CARD)
           //appends a card with trail info and variables (for each) HTML came from Ivan
           let apiKey = "28d434e8969b198ac0dc819997cb40d1";
-          let newUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&unit=imperial&appid=${apiKey}`;
+          let newUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${apiKey}`;
           $.ajax({
             url: newUrl,
             method: "GET"
           }).then(function(weather) {
             console.log(weather);
+            let feelsLike = weather.main.temp;
+            let minimumTemp = weather.main.temp_min;
+            let maximumTemp = weather.main.temp_max;
+            let conditions = weather.weather[0].description;
             let currentWeatherIcon = weather.weather[0].icon;
             $("#cards").append(`
                 <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
@@ -131,17 +135,20 @@ $("#run-search").click(function(event) {
                          <h3 class="text-secondary text-uppercase mb-0">${trailName} (${trailLength} Mile Hike)</h3>
                              <hr class="star-dark mb-5">
                              <div class="row">
-                                 <div class="col-lg-3 col-md-4">
+                                 <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
                                      <img class="img-fluid mb-4" src="${thumbnail}" alt="">
                                  </div>
-                                 <div class="col-lg-9 col-md-8">
-                                     <h4>${location}</h4>
-                                     <h5>(${travelDist} miles away)</h5>
-                                     <p class="mb-5">${description}</p>
-                                     <h5 class="mb-3">The current weather in ${location} is: <image src="http://openweathermap.org/img/w/${currentWeatherIcon}.png"></h5>
-                                     <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="${trailUrl}" target="_blank">
+                                 <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                                     <h4>${location} (${travelDist} miles away)</h4>
+                                     <p class="mb-1">${description}</p>
+                                     <h5 class="text-capitalize my-0">${conditions}  &raquo;<image class="my-0" src="http://openweathermap.org/img/w/${currentWeatherIcon}.png" width="80px" height="80px"></h5>
+                                     <p class="font-weight-bold align-baseline">Feels Like  &#10146;  ${feelsLike} - ºF</p>
+                                     <p class="font-weight-bold align-baseline">Highest  &#10146;  ${maximumTemp} - ºF</p>
+                                     <p class="font-weight-bold align-baseline">Lowest  &#10146;  ${minimumTemp} - ºF</p>
+                                     
+                                     <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss mr-3 text-right" href="${trailUrl}" target="_blank">
                                          Details</a>
-                                         <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${trailLat},${trailLong}" target="_blank">
+                                         <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss text-right" href="https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${trailLat},${trailLong}" target="_blank">
                                          Directions</a>
                                  </div>
                              </div>
@@ -195,40 +202,50 @@ $("#run-search").click(function(event) {
         //MAKE AN AJAX CALL TO WEATHER API FOR TRAIL LOCATION AND .THEN(STORE RESULTS AND RENDER CARD)
         //appends a card with trail info and variables (for each) HTML came from Ivan
         let apiKey = "28d434e8969b198ac0dc819997cb40d1";
-        let newUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&unit=imperial&appid=${apiKey}`;
+        let newUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${apiKey}`;
         $.ajax({
           url: newUrl,
           method: "GET"
         }).then(function(weather) {
-          console.log(weather);
-          let currentWeatherIcon = weather.weather[0].icon;
+            let feelsLike = weather.main.temp;
+            let minimumTemp = weather.main.temp_min;
+            let maximumTemp = weather.main.temp_max;
+            let conditions = weather.weather[0].description;
+            let currentWeatherIcon = weather.weather[0].icon;
           $("#cards").append(`
-                <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
-             <div class="portfolio-modal-dialog bg-white">
-              
-            
-                     <div class="row">
-                         <div class="col-lg-12 mx-auto">
-                         <h3 class="text-secondary text-uppercase mb-0">${trailName} (${trailLength} Mile Hike)</h3>
-                             <hr class="star-dark mb-5">
-                             <div class="row">
-                                 <div class="col-lg-3 col-md-4">
-                                     <img class="img-fluid mb-4" src="${thumbnail}" alt="">
-                                 </div>
-                                 <div class="col-lg-9 col-md-8">
-                                     <h4>${location}</h4>
-                                     <h5>(${travelDist} miles away)</h5>
-                                     <p class="mb-5">${description}</p>
-                                     <h5 class="mb-3">The current weather in ${location} is: <image src="http://openweathermap.org/img/w/${currentWeatherIcon}.png"></h5>
-                                     <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="${trailUrl}" target="_blank">
-                                         Details</a>
-                                         <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${trailLat},${trailLong}" target="_blank">
-                                         Directions</a>
-                                 </div>
-                             </div>
-                         </div> `);
+          <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
+       <div class="portfolio-modal-dialog bg-white">
+        
+      
+               <div class="row">
+                   <div class="col-lg-12 mx-auto">
+                   <h3 class="text-secondary text-uppercase mb-0">${trailName} (${trailLength} Mile Hike)</h3>
+                       <hr class="star-dark mb-5">
+                       <div class="row">
+                           <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                               <img class="img-fluid mb-4" src="${thumbnail}" alt="">
+                           </div>
+                           <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                               <h4>${location} (${travelDist} miles away)</h4>
+                               <p class="mb-1">${description}</p>
+                               <h5 class="text-capitalize my-0">${conditions}  &raquo;<image class="my-0" src="http://openweathermap.org/img/w/${currentWeatherIcon}.png" width="80px" height="80px"></h5>
+                               <p class="font-weight-bold align-baseline">Feels Like  &#10146;  ${feelsLike} - ºF</p>
+                               <p class="font-weight-bold align-baseline">Highest  &#10146;  ${maximumTemp} - ºF</p>
+                               <p class="font-weight-bold align-baseline">Lowest  &#10146;  ${minimumTemp} - ºF</p>
+                               
+                               <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss mr-3 text-right" href="${trailUrl}" target="_blank">
+                                   Details</a>
+                                   <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss text-right" href="https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${trailLat},${trailLong}" target="_blank">
+                                   Directions</a>
+                           </div>
+                       </div>
+                   </div> `);
         });
       });
     });
   }
 });
+
+
+//     Location Icon 
+
