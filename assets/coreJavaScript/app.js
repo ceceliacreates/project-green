@@ -63,6 +63,7 @@ function renderResults(
   trailLat,
   trailLong
 ) {
+  $("#errorMsj").html("Your Next Adventure Awaits")
   $("#cards").append(`
   <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
 <div class="portfolio-modal-dialog bg-white">
@@ -114,6 +115,12 @@ $("#run-search").click(function(event) {
   let userInput = $("#citySearch").val();
   //checks if latitude is a blank string, meaning "current location" is not checked. If not checked, searches by City instead
   if (latitude === "") {
+    if (!userInput) {
+      $("#errorMsj").html(
+        `<p class="h3 text-warning font-weight-bold">Enter a city or select 'Use Current Location' to search.</p>`
+      );
+    }
+    else {
     $.get(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${userInput}&key=AIzaSyCoxgeV06M15Vcxj5i-SD89TJxPQYl3nIM`
     ).then(function(response) {
@@ -190,6 +197,7 @@ $("#run-search").click(function(event) {
       });
     });
   }
+}
   //if latitude exists (is not a blank string) it goes directly to searchTrails function followed by ajax call to trail search
   else {
     console.log("using current data instead");
