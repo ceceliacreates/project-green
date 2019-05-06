@@ -264,4 +264,16 @@ $("#run-search").click(function(event) {
   }
 });
 
+$("#send").on("click", function (e) {
+  e.preventDefault();
+  const name = encodeURI( $("#name").val() );
+  const email = encodeURI( $("#email").val() );
+  const phone = encodeURI( $("#phone").val() );
+  const message = encodeURI( $("#message").val() );
+  const subject = encodeURI(`${name} Says.. Your Website Rocks!!!!`);
+
+  const hrefText = `mailto:ivansito87@gmail.com?cc=ceceliacreates@gmail.com&bcc=tonjaps3@gmail.com&subject=${subject}&body=${message}`;
+  window.location.href = hrefText;
+});
+
 //     Location Icon

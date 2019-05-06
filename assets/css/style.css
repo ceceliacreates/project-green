@@ -296,7 +296,7 @@ header.masthead h2 {
 
     background: transparent;
     border: 3px solid white;
-    line-height: 0.5;
+    line-height: 1.5;
 }
 
 .floating-label-form-group {
@@ -467,3 +467,4 @@ input[type=checkbox] + label {
     font-family: 'Rubik';
     font-size: 20px;
 }
+
