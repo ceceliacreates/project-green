@@ -40,7 +40,7 @@ section h2 {
     font-weight: bolder;
     padding: 1px 16px;
     line-height: 1.9;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 #run-search:hover {
@@ -297,6 +297,7 @@ header.masthead h2 {
     background: transparent;
     border: 3px solid white;
     line-height: 1.5;
+    margin-bottom: 11px;
 }
 
 .floating-label-form-group {
