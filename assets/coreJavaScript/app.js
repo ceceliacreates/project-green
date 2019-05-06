@@ -68,23 +68,27 @@ function renderResults(
 <div class="portfolio-modal-dialog bg-white">
        <div class="row">
            <div class="col-lg-12 mx-auto">
-           <h3 class="text-secondary text-uppercase mb-0">${trailName} (${trailLength} Mile Hike)</h3>
+           <h3 class="text-secondary text-uppercase mb-0">${trailName}&nbsp; &latail; ${trailLength} Mile Hike &ratail; <i class='fas fa-hiking' style='font-size:30px;color:green'></i>
+           </h3>
                <hr class="star-dark mb-5">
                <div class="row">
                    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
                        <img class="img-fluid mb-4" src="${thumbnail}" alt="">
                    </div>
                    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
-                       <h4>${location} (${travelDist} miles away)</h4>
+                       <h4>${location}&ensp; (${travelDist} miles away) &ensp; <i class='fas fa-car-side' style='font-size:30px;color:green'></i>
+                       </h4>
                        <p class="mb-1">${description}</p>
-                       <h5 class="text-capitalize my-0">${conditions} <image class="my-0" src="http://openweathermap.org/img/w/${currentWeatherIcon}.png" width="80px" height="80px"></h5>
-                       <p class="font-weight-bold align-baseline">Feels Like:  ${feelsLike} ºF</p>
-                       <p class="font-weight-bold align-baseline">High:  ${maximumTemp} ºF</p>
-                       <p class="font-weight-bold align-baseline">Low:  ${minimumTemp} ºF</p>
+                       <h5 class="text-capitalize my-0">${conditions}&ensp;<image class="my-0" src="http://openweathermap.org/img/w/${currentWeatherIcon}.png" width="80px" height="80px"></h5>
+                       <p class="font-weight-bold align-baseline">Feels Like:  &ensp; ${feelsLike}&ensp;ºF</p>
+                       <p class="font-weight-bold align-baseline">High: &ensp; ${maximumTemp}&ensp;ºF</p>
+                       <p class="font-weight-bold align-baseline">Low: &ensp; ${minimumTemp}&ensp;ºF</p>
                        
                        <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss mr-3 text-right" href="${trailUrl}" target="_blank">
-                           Details</a>
+                       <i class='fas fa-angle-double-right' style='font-size:20px'></i>
+                       Details</a>
                            <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss text-right" href="https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${trailLat},${trailLong}" target="_blank">
+                           <i class='fas fa-map-marked-alt' style='font-size:20px'></i>
                            Directions</a>
                    </div>
                </div>
