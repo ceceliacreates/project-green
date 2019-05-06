@@ -133,8 +133,14 @@ $("#run-search").click(function(event) {
         const trailArr = response.trails;
         //logs array to console
         //console.log(trailArr);
+        const miles = trailArr.filter(function(trail){
+          return trail.length<$("#trailLength").val();         
+        })
+        console.log(miles);
+
+
         //renders a card for each item in the array
-        trailArr.forEach(function(trail) {
+        miles.forEach(function(trail) {
           //creates variable for trail name, thumbnail image, description, and trail length (for each)
           const trailName = trail.name;
           const thumbnail = trail.imgMedium;
