@@ -1,17 +1,18 @@
-//  let userInput = $("#citySearch").val();
-//  console.log(userInput);
-//I HAD TO MOVE THESE VARIABLES TO GLOBAL SO I COULD ACCESS THEM WITH THE CURRENT LOCATION CHECKBOX
+//DECLARES GLOBAL VARIABLES
+
 let latitude = "";
 let longitude = "";
-//Sets on check function for checkbox
-$("#currentLocationCheck").change(function () {
+
+//CURRENT LOCATION CHECKBOX EVENT LISTENER
+
+$("#currentLocationCheck").change(function() {
   //checks if box was checked or unchecked
   if ($("#currentLocationCheck").is(":checked")) {
     console.log("checkbox checked!");
     //when checked, verifies that geolocation is enabled
     if (navigator.geolocation) {
       //if yes, runs getCurrentPosition method that prompts user to allow access to their location
-      navigator.geolocation.getCurrentPosition(function (position) {
+      navigator.geolocation.getCurrentPosition(function(position) {
         //saves location as latitude and longitude variables
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
@@ -32,13 +33,16 @@ $("#currentLocationCheck").change(function () {
     $("#citySearch").prop("disabled", false);
   }
 });
-//declares positionError function
+
+//DECLARES FUNCTION TO THROW ERROR MESSAGE IF GEOLOCATION NOT ENABLED/ALLOWED
 function positionError() {
   $("#currentLocationCheck").remove();
   $("#currentLocationLabel").html(
     `<p class="text-danger font-weight-bold">Geolocation services not supported. Please enter location above.</p>`
   );
 }
+
+//DECLARES FUNCTION TO RENDER RESULTS
 
 function renderResults(
   trailName,
@@ -84,67 +88,48 @@ function renderResults(
                    </div>
                </div>
            </div> `);
-}// Function to empty out the articles
+}
+
+// DECLARES FUNCTION TO CLEAR PREVIOUS SEARCH RESULTS
 function clear() {
   $("#cards").empty();
 }
-//on-click listener for search button
-$("#run-search").click(function (event) {
+
+function clearLatLong() {
+  latitude = "";
+  longitude = "";
+}
+
+//EVENT LISTENER FOR SEARCH BUTTON (LOTS OF STUFF IN HERE)
+
+$("#run-search").click(function(event) {
   event.preventDefault();
   // clear card upon new search criteria
   clear();
+  let userInput = $("#citySearch").val();
   //checks if latitude is a blank string, meaning "current location" is not checked. If not checked, searches by City instead
   if (latitude === "") {
-    let userInput = $("#citySearch").val();
-    console.log(userInput);
-
-    const apiKey = "28d434e8969b198ac0dc819997cb40d1";
-    // const city = ;
-    const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=${apiKey}`;
-    let searchCity;
-    let currentWeatherIcon;
-    //pulling the api using the weather url for longitude and latitude data
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      //pulling the response from the previous api of longitude and latitude
-      .then(function (response) {
-        console.log(response);
-        latitude = response.coord.lat;
-        longitude = response.coord.lon;
-        searchCity = response.name;
-        currentWeatherIcon = response.weather[0].icon;
-
-        console.log(latitude);
-        console.log(longitude);
-        console.log(searchCity);
-        console.log(currentWeatherIcon);
-
-        //Returns data for the next promise
-        return searchTrails(latitude, longitude, searchCity);
-      })
-      // calling for the function to display
-      .then(function (trails) {
-        console.log(trails);
-      });
-    function searchTrails(lat, lon) {
+    $.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${userInput}&key=AIzaSyCoxgeV06M15Vcxj5i-SD89TJxPQYl3nIM`
+    ).then(function(response) {
+      latitude = response.results[0].geometry.location.lat;
+      longitude = response.results[0].geometry.location.lng;
       const params = $.param({
         key: "200460387-e5b1d616b3250f62fab9619fc65bde2d",
-        lat: lat,
-        lon: lon
+        lat: latitude,
+        lon: longitude
       });
-      return $.ajax({
+      $.ajax({
         url: "https://www.hikingproject.com/data/get-trails?" + params,
         method: "GET"
-      }).then(function (response) {
+      }).then(function(response) {
         //Promise that will run once object is returned from API call
         //creates array of trails from JSON object
         const trailArr = response.trails;
         //logs array to console
-        console.log(trailArr);
+        //console.log(trailArr);
         //renders a card for each item in the array
-        trailArr.forEach(function (trail) {
+        trailArr.forEach(function(trail) {
           //creates variable for trail name, thumbnail image, description, and trail length (for each)
           const trailName = trail.name;
           const thumbnail = trail.imgMedium;
@@ -169,8 +154,8 @@ $("#run-search").click(function (event) {
           $.ajax({
             url: newUrl,
             method: "GET"
-          }).then(function (weather) {
-            console.log(weather);
+          }).then(function(weather) {
+            //console.log(weather);
             let feelsLike = Math.round(weather.main.temp);
             let minimumTemp = Math.round(weather.main.temp_min);
             let maximumTemp = Math.round(weather.main.temp_max);
@@ -196,8 +181,9 @@ $("#run-search").click(function (event) {
             );
           });
         });
+      clearLatLong();
       });
-    }
+    });
   }
   //if latitude exists (is not a blank string) it goes directly to searchTrails function followed by ajax call to trail search
   else {
@@ -211,18 +197,18 @@ $("#run-search").click(function (event) {
       });
     }
     searchTrails(latitude, longitude);
-    console.log(params);
+    //console.log(params);
     $.ajax({
       url: "https://www.hikingproject.com/data/get-trails?" + params,
       method: "GET"
-    }).then(function (response) {
+    }).then(function(response) {
       //Promise that will run once object is returned from API call
       //creates array of trails from JSON object
       const trailArr = response.trails;
       //logs array to console
-      console.log(trailArr);
+      //console.log(trailArr);
       //renders a card for each item in the array
-      trailArr.forEach(function (trail) {
+      trailArr.forEach(function(trail) {
         //creates variable for trail name, thumbnail image, description, and trail length (for each)
         const trailName = trail.name;
         const thumbnail = trail.imgMedium;
@@ -247,7 +233,7 @@ $("#run-search").click(function (event) {
         $.ajax({
           url: newUrl,
           method: "GET"
-        }).then(function (weather) {
+        }).then(function(weather) {
           let feelsLike = Math.round(weather.main.temp);
           let minimumTemp = Math.round(weather.main.temp_min);
           let maximumTemp = Math.round(weather.main.temp_max);
@@ -273,6 +259,7 @@ $("#run-search").click(function (event) {
           );
         });
       });
+    clearLatLong();
     });
   }
 });
