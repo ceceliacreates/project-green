@@ -4,14 +4,14 @@
 let latitude = "";
 let longitude = "";
 //Sets on check function for checkbox
-$("#currentLocationCheck").change(function() {
+$("#currentLocationCheck").change(function () {
   //checks if box was checked or unchecked
   if ($("#currentLocationCheck").is(":checked")) {
     console.log("checkbox checked!");
     //when checked, verifies that geolocation is enabled
     if (navigator.geolocation) {
       //if yes, runs getCurrentPosition method that prompts user to allow access to their location
-      navigator.geolocation.getCurrentPosition(function(position) {
+      navigator.geolocation.getCurrentPosition(function (position) {
         //saves location as latitude and longitude variables
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
@@ -84,10 +84,15 @@ function renderResults(
                    </div>
                </div>
            </div> `);
+}// Function to empty out the articles
+function clear() {
+  $("#cards").empty();
 }
 //on-click listener for search button
-$("#run-search").click(function(event) {
+$("#run-search").click(function (event) {
   event.preventDefault();
+  // clear card upon new search criteria
+  clear();
   //checks if latitude is a blank string, meaning "current location" is not checked. If not checked, searches by City instead
   if (latitude === "") {
     let userInput = $("#citySearch").val();
@@ -104,7 +109,7 @@ $("#run-search").click(function(event) {
       method: "GET"
     })
       //pulling the response from the previous api of longitude and latitude
-      .then(function(response) {
+      .then(function (response) {
         console.log(response);
         latitude = response.coord.lat;
         longitude = response.coord.lon;
@@ -120,7 +125,7 @@ $("#run-search").click(function(event) {
         return searchTrails(latitude, longitude, searchCity);
       })
       // calling for the function to display
-      .then(function(trails) {
+      .then(function (trails) {
         console.log(trails);
       });
     function searchTrails(lat, lon) {
@@ -132,14 +137,14 @@ $("#run-search").click(function(event) {
       return $.ajax({
         url: "https://www.hikingproject.com/data/get-trails?" + params,
         method: "GET"
-      }).then(function(response) {
+      }).then(function (response) {
         //Promise that will run once object is returned from API call
         //creates array of trails from JSON object
         const trailArr = response.trails;
         //logs array to console
         console.log(trailArr);
         //renders a card for each item in the array
-        trailArr.forEach(function(trail) {
+        trailArr.forEach(function (trail) {
           //creates variable for trail name, thumbnail image, description, and trail length (for each)
           const trailName = trail.name;
           const thumbnail = trail.imgMedium;
@@ -164,7 +169,7 @@ $("#run-search").click(function(event) {
           $.ajax({
             url: newUrl,
             method: "GET"
-          }).then(function(weather) {
+          }).then(function (weather) {
             console.log(weather);
             let feelsLike = Math.round(weather.main.temp);
             let minimumTemp = Math.round(weather.main.temp_min);
@@ -210,14 +215,14 @@ $("#run-search").click(function(event) {
     $.ajax({
       url: "https://www.hikingproject.com/data/get-trails?" + params,
       method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
       //Promise that will run once object is returned from API call
       //creates array of trails from JSON object
       const trailArr = response.trails;
       //logs array to console
       console.log(trailArr);
       //renders a card for each item in the array
-      trailArr.forEach(function(trail) {
+      trailArr.forEach(function (trail) {
         //creates variable for trail name, thumbnail image, description, and trail length (for each)
         const trailName = trail.name;
         const thumbnail = trail.imgMedium;
@@ -242,7 +247,7 @@ $("#run-search").click(function(event) {
         $.ajax({
           url: newUrl,
           method: "GET"
-        }).then(function(weather) {
+        }).then(function (weather) {
           let feelsLike = Math.round(weather.main.temp);
           let minimumTemp = Math.round(weather.main.temp_min);
           let maximumTemp = Math.round(weather.main.temp_max);
