@@ -35,8 +35,9 @@ $("#currentLocationCheck").change(function () {
 //declares positionError function
 function positionError() {
   $("#currentLocationCheck").remove();
-  $("#currentLocationLabel").html(
-    `<p class="text-danger font-weight-bold">Geolocation services not supported. Please enter location above.</p>`
+  $("#currentLocationLabel").hide();
+  $("#errorMsj").html(
+    `<p class="h3 text-warning font-weight-bold">Geolocation services not supported. Please enter city below.</p>`
   );
 }
 
