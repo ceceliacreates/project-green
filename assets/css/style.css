@@ -33,6 +33,19 @@ section h2 {
     font-weight: bold;
 }
 
+#run-search {
+    background-color: #f6c400;
+    border: 3px solid #f6c400;
+    color: black;
+    font-weight: bolder;
+    padding: 1px 16px;
+    line-height: 1.9;
+    margin-bottom: 14px;
+}
+
+#run-search:hover {
+    background-color: #52c234;
+}
 .btn-social {
     width: 3.25rem;
     height: 3.25rem;
@@ -98,7 +111,7 @@ section h2 {
 .img-fluid {
     border-radius: 20px;
     object-fit: cover;
-
+    box-shadow: 0 0 3rem 1rem rgba(0, 0, 0, 0.5);
     width: 300px;
     height: 300px;
 }
@@ -198,7 +211,41 @@ header.masthead h2 {
     .portfolio .portfolio-item {
         margin-bottom: 30px;
     }
+    .portfolio-modal .portfolio-modal-dialog {
+        min-height: 0vh;
+        padding: 2rem;
+        margin: 3rem calc(3rem - 8px);
+        border-radius: 20px;
+    }
+    .img-fluid {
+        width: 100%;
+    }
 }
+
+@media (min-width: 384px) {
+    .portfolio {
+        margin-bottom: -30px;
+    }
+    .portfolio-modal .portfolio-modal-dialog {
+        min-height: 0vh;
+        padding: 2rem;
+        margin: 3rem calc(3rem - 8px);
+        border-radius: 20px;
+    }
+    .portfolio-modal .portfolio-modal-dialog {
+        min-height: 0vh;
+        padding: 2rem;
+        margin: 3rem calc(3rem - 8px);
+        border-radius: 20px;
+    }
+    .portfolio .portfolio-item {
+        margin-bottom: 30px;
+    }
+    .img-fluid {
+        width: 100%;
+    }
+}
+
 
 .portfolio-modal .portfolio-modal-dialog {
     padding: 3rem 1rem;
@@ -234,12 +281,22 @@ header.masthead h2 {
     .portfolio-modal .portfolio-modal-dialog h2 {
         font-size: 3rem;
     }
+    .portfolio-modal .portfolio-modal-dialog {
+        min-height: 0vh;
+        padding: 2rem;
+        margin: 3rem calc(3rem - 8px);
+        border-radius: 20px;
+    }
+    .img-fluid {
+        width: 100%;
+    }
 }
 
-.form-control, #children, #adults {
-    border-radius: 30px;
+.form-control, #children, #trailLength {
+
     background: transparent;
     border: 3px solid white;
+    line-height: 0.5;
 }
 
 .floating-label-form-group {
@@ -318,6 +375,28 @@ a:focus, a:hover, a:active {
 
 .btn {
     border-width: 2px;
+    border-width: 2px;
+    color: black;
+    background-color: #52c234;
+}
+
+.btn:hover {
+    /* border-width: 2px;
+    border-width: 2px;
+    background-color: #52c234;
+    color: black;
+    font-weight: bolder;
+    font-size: 25px;
+    transition-duration: 1s; */
+    background-color: #52c234;
+    border: 3px solid #52c234;
+    color: black !important;
+    font-weight: 700 !important;
+    letter-spacing: 3px;
+    background: none;
+
+
+transition: all 0.3s ease 0s;
 }
 
 .bg-primary {
@@ -342,7 +421,6 @@ a:focus, a:hover, a:active {
 .btn-primary {
     background-color: #f6c400;
     border: 3px solid #f6c400;
-    border-radius: 20px;
     color: black;
     font-weight: bolder;
     padding: 1px 16px;
@@ -373,4 +451,19 @@ a:focus, a:hover, a:active {
 .check-availabilty .block-32 {
     background: rgb(106, 120, 209);
     border-radius: 10px;
+}
+
+/************ more ***********/
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: unset;
+    padding: 0;
+    top: 50px;
+}
+
+input[type=checkbox] + label {
+    padding-top: 18px;
+    margin-top: 31px;
+    font-family: 'Rubik';
+    font-size: 20px;
 }
