@@ -138,8 +138,12 @@ $("#run-search").click(function(event) {
           //Promise that will run once object is returned from API call
           //creates array of trails from JSON object
           const trailArr = response.trails;
+          let userTrailLength = $("#trailLength").val()
+          if (userTrailLength === "") {
+            userTrailLength = 10;
+          }
           const miles = trailArr.filter(function(trail){
-            return trail.length<$("#trailLength").val();         
+            return trail.length<userTrailLength;         
           })
           //logs array to console
           //console.log(trailArr);
@@ -220,8 +224,12 @@ $("#run-search").click(function(event) {
       //Promise that will run once object is returned from API call
       //creates array of trails from JSON object
       const trailArr = response.trails;
+      let userTrailLength = $("#trailLength").val()
+      if (userTrailLength === "") {
+        userTrailLength = 10;
+      }
       const miles = trailArr.filter(function(trail){
-        return trail.length<$("#trailLength").val();         
+        return trail.length<userTrailLength;         
       })
       //logs array to console
       //console.log(trailArr);
