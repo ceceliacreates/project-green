@@ -138,10 +138,13 @@ $("#run-search").click(function(event) {
           //Promise that will run once object is returned from API call
           //creates array of trails from JSON object
           const trailArr = response.trails;
+          const miles = trailArr.filter(function(trail){
+            return trail.length<$("#trailLength").val();         
+          })
           //logs array to console
           //console.log(trailArr);
           //renders a card for each item in the array
-          trailArr.forEach(function(trail) {
+          miles.forEach(function(trail) {
             //creates variable for trail name, thumbnail image, description, and trail length (for each)
             const trailName = trail.name;
             const thumbnail = trail.imgMedium;
@@ -217,10 +220,13 @@ $("#run-search").click(function(event) {
       //Promise that will run once object is returned from API call
       //creates array of trails from JSON object
       const trailArr = response.trails;
+      const miles = trailArr.filter(function(trail){
+        return trail.length<$("#trailLength").val();         
+      })
       //logs array to console
       //console.log(trailArr);
       //renders a card for each item in the array
-      trailArr.forEach(function(trail) {
+      miles.forEach(function(trail) {
         //creates variable for trail name, thumbnail image, description, and trail length (for each)
         const trailName = trail.name;
         const thumbnail = trail.imgMedium;
