@@ -145,8 +145,13 @@ $("#run-search").click(function(event) {
           const miles = trailArr.filter(function(trail){
             return trail.length<userTrailLength;         
           })
-          //logs array to console
-          //console.log(trailArr);
+          if (miles.length === 0) {
+            console.log("no results")
+            $("#errorMsj").html(
+              `<p class="h3 text-warning font-weight-bold">No results found. Try a different search.</p>`
+            );
+          }
+          else {
           //renders a card for each item in the array
           miles.forEach(function(trail) {
             //creates variable for trail name, thumbnail image, description, and trail length (for each)
@@ -200,6 +205,7 @@ $("#run-search").click(function(event) {
               );
             });
           });
+        };
         });
       });
     }
@@ -224,6 +230,14 @@ $("#run-search").click(function(event) {
       //Promise that will run once object is returned from API call
       //creates array of trails from JSON object
       const trailArr = response.trails;
+
+      // IF TRAILARR.length === 0 {throw error message} ELSE
+      if (trailArr.length === 0) {
+        $("#errorMsj").html(
+          `<p class="h3 text-warning font-weight-bold">No results found. Try a different search.</p>`
+        );
+      }
+      else {
       let userTrailLength = $("#trailLength").val()
       if (userTrailLength === "") {
         userTrailLength = 10;
@@ -231,8 +245,13 @@ $("#run-search").click(function(event) {
       const miles = trailArr.filter(function(trail){
         return trail.length<userTrailLength;         
       })
-      //logs array to console
-      //console.log(trailArr);
+      if (miles.length === 0) {
+        console.log("no results")
+        $("#errorMsj").html(
+          `<p class="h3 text-warning font-weight-bold">No results found. Try a different search.</p>`
+        );
+      }
+      else {
       //renders a card for each item in the array
       miles.forEach(function(trail) {
         //creates variable for trail name, thumbnail image, description, and trail length (for each)
@@ -284,7 +303,9 @@ $("#run-search").click(function(event) {
             trailLong
           );
         });
-      });
+      })
+    };
+    }
     });
   }
 });
