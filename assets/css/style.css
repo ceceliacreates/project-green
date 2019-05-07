@@ -292,13 +292,21 @@ header.masthead h2 {
     }
 }
 
+#citySearch, #trailLength {
+    color: white;
+    font-weight: bolder;
+}
+
+#citySearch:focus{
+    background-color: transparent;
+    font-weight: bolder;
+}
 .form-control, #children, #trailLength {
 
     background: transparent;
     border: 3px solid white;
     line-height: 1.5;
     margin-bottom: 11px;
-    color: #ffffff;
 }
 
 .floating-label-form-group {
